@@ -1,0 +1,11 @@
+{
+  "name": "Davenport Walkthroughs",
+  "short_name": "Walkthroughs",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#572932",
+  "theme_color": "#572932",
+  "icons": [
+    { "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
