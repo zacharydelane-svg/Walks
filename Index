@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 1. Paste your web app link (the /exec link from Deploy > Manage deployments) between the quotes on the next line -->
+  <meta name="app-url" content="https://script.google.com/macros/s/AKfycbxOj-MvpCHDGcEYbX03odPmZIqkaPFqXRj2jWFrR7vqUN3HARAZEqRuriZ--wuAIUgzxA/exec">
+
+  <title>Walkthroughs</title>
+  <!-- 2. Put your square icon next to this file, named icon.png (at least 512 x 512 pixels) -->
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-title" content="Walkthroughs">
+  <meta name="theme-color" content="#572932">
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #572932; color: #fff;
+           font-family: system-ui, -apple-system, sans-serif; text-align: center; }
+    img { width: 96px; height: 96px; border-radius: 22px; }
+    a { color: #fff; }
+  </style>
+</head>
+<body>
+  <div style="max-width:320px;padding:24px">
+    <img src="icon.png" alt="">
+    <p id="msg">Opening walkthroughs…</p>
+    <p><a id="go" href="#">Tap here if it doesn’t open</a></p>
+  </div>
+  <script>
+    var url = document.querySelector('meta[name="app-url"]').content;
+    document.getElementById('go').href = url;
+    if (/[?&]add=1/.test(location.search)) {
+      // Setup mode: stay on this page so it can be added to the home screen.
+      // The address is cleaned first, so the home-screen icon opens the app directly.
+      history.replaceState(null, '', location.pathname);
+      document.getElementById('msg').innerHTML =
+        '<b>Add this to your home screen</b><br><br>iPhone: tap the Share button, then <b>Add to Home Screen</b>.<br><br>' +
+        'Android: tap the \u22ee menu, then <b>Add to Home screen</b>.';
+      document.getElementById('go').textContent = 'Or open the app now';
+    } else {
+      location.replace(url);
+    }
+  </script>
+</body>
+</html>
